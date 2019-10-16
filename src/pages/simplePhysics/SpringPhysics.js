@@ -35,7 +35,7 @@ function springForce(dt, position, velocity, anchor, mass = 1, tension = 300) {
   return set(velocity, add(velocity, multiply(dt, acc)));
 }
 
-function stopClockWhenNeeded(dt, position, velocity, clock) {
+function stopClockAfterHalt(dt, position, velocity, clock) {
   const df = diff(position);
   const noMovementFrames = new Value(0);
 
@@ -72,7 +72,7 @@ function springInteraction(transX, gestureState) {
       springForce(dt, position, velocity, anchor),
       // debug('velocity after spring force ', velocity),
       //resistance of sprint
-      damping(dt, velocity,1,50),
+      damping(dt, velocity, 1, 50),
 
       //spring effect b/w finger and box
       // springForce(dt, position, velocity, 0,1,10),
@@ -91,7 +91,7 @@ function springInteraction(transX, gestureState) {
       // debug('velocity after spring force ', velocity),
       damping(dt, velocity),
       // debug('velocity after damping ', velocity),
-      stopClockWhenNeeded(dt, position, velocity, clock),
+      stopClockAfterHalt(dt, position, velocity, clock),
       // debug('position before', position),
       set(position, add(position, mult)),
       // debug('dt', dt),

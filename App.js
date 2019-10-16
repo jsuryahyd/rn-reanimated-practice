@@ -36,6 +36,8 @@ import {
   DrawerNavigatorItems,
   DrawerActions,
 } from 'react-navigation-drawer';
+import PinchZoomAnimations from './src/pages/PinchZoomAnimations';
+import {FollowingItems} from './src/pages/FollowingItems';
 function App() {
   const simplePhysics = createBottomTabNavigator(
     {
@@ -160,8 +162,48 @@ function App() {
           drawerLabel: 'Other Screen',
         }),
       },
+      PinchZoomAnimations: {
+        screen: createStackNavigator(
+          {
+            home: PinchZoomAnimations,
+          },
+          {
+            defaultNavigationOptions: ({navigation, navigationOptions}) => {
+              return {
+                headerTitle: 'Pinch, Zoom and Rotate',
+              };
+            },
+          },
+        ),
+        navigationOptions: {
+          drawerLabel: 'Pinch, Zoom and Rotate',
+        },
+      },
+      FollowingItems: {
+        screen: createStackNavigator(
+          {home: FollowingItems},
+          {
+            defaultNavigationOptions: ({navigation}) => {
+              return {
+                headerLeft: (
+                  <Text
+                    style={{paddingHorizontal: 10}}
+                    onPress={() => {
+                      navigation.openDrawer();
+                    }}>
+                    Menu
+                  </Text>
+                ),
+                headerTitle: 'Following Items',
+              };
+            },
+          },
+        ),
+        navigationOptions: {drawerLabel: 'Following Items'},
+      },
     },
     {
+      initialRouteName: 'PinchZoomAnimations',
       // headerMode: 'none',
       drawerType: 'front',
       defaultNavigationOptions: ({navigation}) => ({}),
