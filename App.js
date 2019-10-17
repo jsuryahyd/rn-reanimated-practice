@@ -203,7 +203,7 @@ function App() {
       },
     },
     {
-      initialRouteName: 'PinchZoomAnimations',
+      initialRouteName: 'FollowingItems',
       // headerMode: 'none',
       drawerType: 'front',
       defaultNavigationOptions: ({navigation}) => ({}),
